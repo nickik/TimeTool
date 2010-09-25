@@ -3,9 +3,9 @@
     (:use clojure.contrib.command-line)
     (:use clojure.pprint))
 
-(defn -main []§
+(defn -main []
   (with-open [rdr (clojure.java.io/reader "/home/user/test.txt")]
-     (doall (map matcher (line-seq rdr)))))
+     (pprint (doall (map matcher (line-seq rdr))))))
 
 (defn formater [[date h m]]
   (let [time (str (+ (Float. h) (/ (Float. m) 60)))]
