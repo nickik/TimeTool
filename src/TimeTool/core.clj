@@ -1,5 +1,11 @@
 (ns TimeTool.core
-  [:use [clojure.pprint]])
+    (:gen-class)
+    (:use clojure.contrib.command-line)
+    (:use clojure.pprint))
+
+(defn -main []§
+  (with-open [rdr (clojure.java.io/reader "/home/user/test.txt")]
+     (doall (map matcher (line-seq rdr)))))
 
 (defn formater [[date h m]]
   (let [time (str (+ (Float. h) (/ (Float. m) 60)))]
@@ -11,6 +17,3 @@
     (formater (vec (map (partial apply str)
                         [Data (take 2 timestring) (drop 3 timestring)])))))
 
-(defn main []
-  (with-open [rdr (clojure.java.io/reader "/home/nick/zbinden.txt")]
-    (doall (map matcher (drop 5 (line-seq rdr))))))
